@@ -16,3 +16,12 @@ shuttles:
   filepath: data/01_raw/shuttles.xlsx
   load_args:
     engine: openpyxl
+
+preprocessed_companies:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/preprocessed_companies.csv
+
+preprocessed_shuttles:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/preprocessed_shuttles.csv
+
