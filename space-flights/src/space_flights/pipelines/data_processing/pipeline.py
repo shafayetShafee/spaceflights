@@ -4,7 +4,7 @@ generated using Kedro 0.19.6
 """
 
 from kedro.pipeline import Pipeline, pipeline, node
-from .nodes import preprocess_companies, preprocess_shuttles
+from .nodes import preprocess_companies, preprocess_shuttles, create_model_input_table
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -21,4 +21,10 @@ def create_pipeline(**kwargs) -> Pipeline:
             outputs="preprocessed_shuttles",
             name="preprocess_shuttles_node"
         ),
+        node(
+            func=create_model_input_table,
+            inputs=["preprocessed_shuttles", "preprocessed_companies", "reviews"],
+            outputs="model_input_table",
+            name="create_model_input_table_name"
+        )
     ])

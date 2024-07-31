@@ -25,3 +25,7 @@ preprocessed_shuttles:
   type: pandas.CSVDataset
   filepath: data/02_intermediate/preprocessed_shuttles.csv
 
+model_input_table:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/model_input_table.csv
+

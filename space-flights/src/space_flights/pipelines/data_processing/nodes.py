@@ -32,5 +32,18 @@ def preprocess_shuttles(df: pd.DataFrame) -> pd.DataFrame:
         moon_clearance_complete=lambda df_: _is_true(df_.moon_clearance_complete),
         price=lambda df_: _parse_money(df_.price),
     )
-
     return shuttles_df
+
+def create_model_input_table(
+    shuttles: pd.DataFrame,
+    companies: pd.DataFrame,
+    reviews: pd.DataFrame
+) -> pd.DataFrame:
+    model_input_table = (
+        shuttles
+            .rename(columns={"id": "shuttle_id"})
+            .merge(reviews, on="shuttle_id")
+            .merge(companies, left_on="company_id", right_on="id")
+            .dropna()
+    )
+    return model_input_table
